@@ -1,7 +1,24 @@
 server:
-    port: 8765
+  port: 8765
  
 eureka:
-    client:
-        serviceUrl:
-             defaultZone: http://localhost:8761/eureka/
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+ 
+zuul:
+  debug:
+    request: true
+  routes:
+    card-service:
+        path: /card-service/**
+        serviceId: card-service
+        stripPrefix: true
+    statement-service:
+        path: /statement-service/**
+        serviceId: statement-service
+        stripPrefix: true
+    card-statement-composite:
+        path: /card-statement-composite/**
+        serviceId: card-statement-composite
+        stripPrefix: true
